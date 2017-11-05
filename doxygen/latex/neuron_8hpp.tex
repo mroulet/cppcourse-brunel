@@ -1,0 +1,183 @@
+\hypertarget{neuron_8hpp}{\section{/home/localguest/\-Documents/project/cppcourse-\/brunel/src/neuron.hpp File Reference}
+\label{neuron_8hpp}\index{/home/localguest/\-Documents/project/cppcourse-\/brunel/src/neuron.\-hpp@{/home/localguest/\-Documents/project/cppcourse-\/brunel/src/neuron.\-hpp}}
+}
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$cmath$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$cassert$>$}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include $<$list$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classNeuron}{Neuron}
+\begin{DoxyCompactList}\small\item\em Managing the neuron simulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const double \hyperlink{neuron_8hpp_a6e550921d5c2c78c55be1c0d76512d45}{g} = 5.\-0
+\begin{DoxyCompactList}\small\item\em Constants. \end{DoxyCompactList}\item 
+const double \hyperlink{neuron_8hpp_ae10421a7cc4ada7244a4e78a11e973f9}{Eta} = 2.\-0
+\begin{DoxyCompactList}\small\item\em Eta function. \end{DoxyCompactList}\item 
+const double \hyperlink{neuron_8hpp_a701fdba2291c3e0416556885d978b59c}{Threshold} = 20.\-0
+\begin{DoxyCompactList}\small\item\em Maximum potential limit \mbox{[}m\-V\mbox{]}. \end{DoxyCompactList}\item 
+const double \hyperlink{neuron_8hpp_ab4a2f56c0489d6d505e55f05d2fdd88a}{Potential\-Reset} = 0.\-0
+\begin{DoxyCompactList}\small\item\em Potential reset \mbox{[}m\-V\mbox{]}. \end{DoxyCompactList}\item 
+const double \hyperlink{neuron_8hpp_a4d2852f394c94e7eaac02e3c5b393654}{dt} = 0.\-1
+\begin{DoxyCompactList}\small\item\em Time variation \mbox{[}ms\mbox{]}. \end{DoxyCompactList}\item 
+const unsigned int \hyperlink{neuron_8hpp_ae3d14d9ff0f785b4f4b0bb06ba6af414}{h} = 1
+\begin{DoxyCompactList}\small\item\em Steptime (will be converted en ms) \end{DoxyCompactList}\item 
+const double \hyperlink{neuron_8hpp_a25edab29cba7679a5c626d5a07b47a7c}{Resistance} = 20.\-0
+\begin{DoxyCompactList}\small\item\em Membrane Resistance \mbox{[}Ohm\mbox{]}. \end{DoxyCompactList}\item 
+const double \hyperlink{neuron_8hpp_adff5844b2108dfe72545286b8a36d9ab}{Capacity} = 1.\-0
+\begin{DoxyCompactList}\small\item\em Capacity \mbox{[}Farrad\mbox{]}. \end{DoxyCompactList}\item 
+const double \hyperlink{neuron_8hpp_a9a42c4d90eb9808c60bb3f1be6a0c1a7}{tau} = \hyperlink{neuron_8hpp_a25edab29cba7679a5c626d5a07b47a7c}{Resistance} $\ast$ \hyperlink{neuron_8hpp_adff5844b2108dfe72545286b8a36d9ab}{Capacity}
+\begin{DoxyCompactList}\small\item\em Tau excitatory. \end{DoxyCompactList}\item 
+const double \hyperlink{neuron_8hpp_a2b076531cd50c7b55702a53221f2ac72}{e} = exp(-\/\hyperlink{neuron_8hpp_a4d2852f394c94e7eaac02e3c5b393654}{dt}/\hyperlink{neuron_8hpp_a9a42c4d90eb9808c60bb3f1be6a0c1a7}{tau})
+\begin{DoxyCompactList}\small\item\em needed for the membrane equation \end{DoxyCompactList}\item 
+const double \hyperlink{neuron_8hpp_a917f55daa0c134e3b44d452bdea20bd5}{One\-Minus\-\_\-e} = 1 -\/ \hyperlink{neuron_8hpp_a2b076531cd50c7b55702a53221f2ac72}{e}
+\begin{DoxyCompactList}\small\item\em needed for the membrane equation \end{DoxyCompactList}\item 
+const double \hyperlink{neuron_8hpp_ac81e9407790acb92e036cf7c1d342614}{tau\-Rp} = 2.\-0
+\begin{DoxyCompactList}\small\item\em Refractory time period \mbox{[}ms\mbox{]}. \end{DoxyCompactList}\item 
+const double \hyperlink{neuron_8hpp_a3784b3184efee468e3e3ebad4a55d057}{Amplitude} = 0.\-1
+\begin{DoxyCompactList}\small\item\em Spike Amplitude received from excitatory neurons. \end{DoxyCompactList}\item 
+const double \hyperlink{neuron_8hpp_a4e39e47f516a0bfefb0b273f3078f522}{Delay} = 1.\-5
+\begin{DoxyCompactList}\small\item\em Transmission delay \mbox{[}ms\mbox{]}. \end{DoxyCompactList}\item 
+const double \hyperlink{neuron_8hpp_ac386850213efba8c34c6d564238ca257}{Connection\-Percent} = 0.\-1
+\begin{DoxyCompactList}\small\item\em Connections pourcentage in the whole network. \end{DoxyCompactList}\item 
+const double \hyperlink{neuron_8hpp_ae99abc0969f80b82b39a639e6889b7db}{Vext} = \hyperlink{neuron_8hpp_a701fdba2291c3e0416556885d978b59c}{Threshold} $\ast$ \hyperlink{neuron_8hpp_ae10421a7cc4ada7244a4e78a11e973f9}{Eta} /(\hyperlink{neuron_8hpp_a3784b3184efee468e3e3ebad4a55d057}{Amplitude}$\ast$\hyperlink{neuron_8hpp_a9a42c4d90eb9808c60bb3f1be6a0c1a7}{tau})
+\begin{DoxyCompactList}\small\item\em External frequency. \end{DoxyCompactList}\item 
+const unsigned int \hyperlink{neuron_8hpp_aa79321e58c26befef3ba8815d16a0638}{Delay\-Step} = static\-\_\-cast$<$unsigned long$>$(floor(\hyperlink{neuron_8hpp_a4e39e47f516a0bfefb0b273f3078f522}{Delay}/\hyperlink{neuron_8hpp_a4d2852f394c94e7eaac02e3c5b393654}{dt}))
+\begin{DoxyCompactList}\small\item\em Delay in steps. \end{DoxyCompactList}\item 
+const unsigned int \hyperlink{neuron_8hpp_a2fda00c3c3a2ec84ebb290b2b580f14a}{Refractory\-Step} = static\-\_\-cast$<$unsigned long$>$(floor(\hyperlink{neuron_8hpp_ac81e9407790acb92e036cf7c1d342614}{tau\-Rp}/\hyperlink{neuron_8hpp_a4d2852f394c94e7eaac02e3c5b393654}{dt}))
+\begin{DoxyCompactList}\small\item\em Refractory period in steps. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\hypertarget{neuron_8hpp_a3784b3184efee468e3e3ebad4a55d057}{\index{neuron.\-hpp@{neuron.\-hpp}!Amplitude@{Amplitude}}
+\index{Amplitude@{Amplitude}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{Amplitude}]{\setlength{\rightskip}{0pt plus 5cm}const double Amplitude = 0.\-1}}\label{neuron_8hpp_a3784b3184efee468e3e3ebad4a55d057}
+
+
+Spike Amplitude received from excitatory neurons. 
+
+\hypertarget{neuron_8hpp_adff5844b2108dfe72545286b8a36d9ab}{\index{neuron.\-hpp@{neuron.\-hpp}!Capacity@{Capacity}}
+\index{Capacity@{Capacity}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{Capacity}]{\setlength{\rightskip}{0pt plus 5cm}const double Capacity = 1.\-0}}\label{neuron_8hpp_adff5844b2108dfe72545286b8a36d9ab}
+
+
+Capacity \mbox{[}Farrad\mbox{]}. 
+
+\hypertarget{neuron_8hpp_ac386850213efba8c34c6d564238ca257}{\index{neuron.\-hpp@{neuron.\-hpp}!Connection\-Percent@{Connection\-Percent}}
+\index{Connection\-Percent@{Connection\-Percent}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{Connection\-Percent}]{\setlength{\rightskip}{0pt plus 5cm}const double Connection\-Percent = 0.\-1}}\label{neuron_8hpp_ac386850213efba8c34c6d564238ca257}
+
+
+Connections pourcentage in the whole network. 
+
+\hypertarget{neuron_8hpp_a4e39e47f516a0bfefb0b273f3078f522}{\index{neuron.\-hpp@{neuron.\-hpp}!Delay@{Delay}}
+\index{Delay@{Delay}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{Delay}]{\setlength{\rightskip}{0pt plus 5cm}const double Delay = 1.\-5}}\label{neuron_8hpp_a4e39e47f516a0bfefb0b273f3078f522}
+
+
+Transmission delay \mbox{[}ms\mbox{]}. 
+
+\hypertarget{neuron_8hpp_aa79321e58c26befef3ba8815d16a0638}{\index{neuron.\-hpp@{neuron.\-hpp}!Delay\-Step@{Delay\-Step}}
+\index{Delay\-Step@{Delay\-Step}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{Delay\-Step}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned int Delay\-Step = static\-\_\-cast$<$unsigned long$>$(floor({\bf Delay}/{\bf dt}))}}\label{neuron_8hpp_aa79321e58c26befef3ba8815d16a0638}
+
+
+Delay in steps. 
+
+\hypertarget{neuron_8hpp_a4d2852f394c94e7eaac02e3c5b393654}{\index{neuron.\-hpp@{neuron.\-hpp}!dt@{dt}}
+\index{dt@{dt}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{dt}]{\setlength{\rightskip}{0pt plus 5cm}const double dt = 0.\-1}}\label{neuron_8hpp_a4d2852f394c94e7eaac02e3c5b393654}
+
+
+Time variation \mbox{[}ms\mbox{]}. 
+
+\hypertarget{neuron_8hpp_a2b076531cd50c7b55702a53221f2ac72}{\index{neuron.\-hpp@{neuron.\-hpp}!e@{e}}
+\index{e@{e}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{e}]{\setlength{\rightskip}{0pt plus 5cm}const double e = exp(-\/{\bf dt}/{\bf tau})}}\label{neuron_8hpp_a2b076531cd50c7b55702a53221f2ac72}
+
+
+needed for the membrane equation 
+
+\hypertarget{neuron_8hpp_ae10421a7cc4ada7244a4e78a11e973f9}{\index{neuron.\-hpp@{neuron.\-hpp}!Eta@{Eta}}
+\index{Eta@{Eta}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{Eta}]{\setlength{\rightskip}{0pt plus 5cm}const double Eta = 2.\-0}}\label{neuron_8hpp_ae10421a7cc4ada7244a4e78a11e973f9}
+
+
+Eta function. 
+
+\hypertarget{neuron_8hpp_a6e550921d5c2c78c55be1c0d76512d45}{\index{neuron.\-hpp@{neuron.\-hpp}!g@{g}}
+\index{g@{g}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{g}]{\setlength{\rightskip}{0pt plus 5cm}const double g = 5.\-0}}\label{neuron_8hpp_a6e550921d5c2c78c55be1c0d76512d45}
+
+
+Constants. 
+
+Relative strength of inhibitory synapses \hypertarget{neuron_8hpp_ae3d14d9ff0f785b4f4b0bb06ba6af414}{\index{neuron.\-hpp@{neuron.\-hpp}!h@{h}}
+\index{h@{h}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{h}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned int h = 1}}\label{neuron_8hpp_ae3d14d9ff0f785b4f4b0bb06ba6af414}
+
+
+Steptime (will be converted en ms) 
+
+\hypertarget{neuron_8hpp_a917f55daa0c134e3b44d452bdea20bd5}{\index{neuron.\-hpp@{neuron.\-hpp}!One\-Minus\-\_\-e@{One\-Minus\-\_\-e}}
+\index{One\-Minus\-\_\-e@{One\-Minus\-\_\-e}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{One\-Minus\-\_\-e}]{\setlength{\rightskip}{0pt plus 5cm}const double One\-Minus\-\_\-e = 1 -\/ {\bf e}}}\label{neuron_8hpp_a917f55daa0c134e3b44d452bdea20bd5}
+
+
+needed for the membrane equation 
+
+\hypertarget{neuron_8hpp_ab4a2f56c0489d6d505e55f05d2fdd88a}{\index{neuron.\-hpp@{neuron.\-hpp}!Potential\-Reset@{Potential\-Reset}}
+\index{Potential\-Reset@{Potential\-Reset}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{Potential\-Reset}]{\setlength{\rightskip}{0pt plus 5cm}const double Potential\-Reset = 0.\-0}}\label{neuron_8hpp_ab4a2f56c0489d6d505e55f05d2fdd88a}
+
+
+Potential reset \mbox{[}m\-V\mbox{]}. 
+
+\hypertarget{neuron_8hpp_a2fda00c3c3a2ec84ebb290b2b580f14a}{\index{neuron.\-hpp@{neuron.\-hpp}!Refractory\-Step@{Refractory\-Step}}
+\index{Refractory\-Step@{Refractory\-Step}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{Refractory\-Step}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned int Refractory\-Step = static\-\_\-cast$<$unsigned long$>$(floor({\bf tau\-Rp}/{\bf dt}))}}\label{neuron_8hpp_a2fda00c3c3a2ec84ebb290b2b580f14a}
+
+
+Refractory period in steps. 
+
+\hypertarget{neuron_8hpp_a25edab29cba7679a5c626d5a07b47a7c}{\index{neuron.\-hpp@{neuron.\-hpp}!Resistance@{Resistance}}
+\index{Resistance@{Resistance}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{Resistance}]{\setlength{\rightskip}{0pt plus 5cm}const double Resistance = 20.\-0}}\label{neuron_8hpp_a25edab29cba7679a5c626d5a07b47a7c}
+
+
+Membrane Resistance \mbox{[}Ohm\mbox{]}. 
+
+\hypertarget{neuron_8hpp_a9a42c4d90eb9808c60bb3f1be6a0c1a7}{\index{neuron.\-hpp@{neuron.\-hpp}!tau@{tau}}
+\index{tau@{tau}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{tau}]{\setlength{\rightskip}{0pt plus 5cm}const double tau = {\bf Resistance} $\ast$ {\bf Capacity}}}\label{neuron_8hpp_a9a42c4d90eb9808c60bb3f1be6a0c1a7}
+
+
+Tau excitatory. 
+
+\hypertarget{neuron_8hpp_ac81e9407790acb92e036cf7c1d342614}{\index{neuron.\-hpp@{neuron.\-hpp}!tau\-Rp@{tau\-Rp}}
+\index{tau\-Rp@{tau\-Rp}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{tau\-Rp}]{\setlength{\rightskip}{0pt plus 5cm}const double tau\-Rp = 2.\-0}}\label{neuron_8hpp_ac81e9407790acb92e036cf7c1d342614}
+
+
+Refractory time period \mbox{[}ms\mbox{]}. 
+
+\hypertarget{neuron_8hpp_a701fdba2291c3e0416556885d978b59c}{\index{neuron.\-hpp@{neuron.\-hpp}!Threshold@{Threshold}}
+\index{Threshold@{Threshold}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{Threshold}]{\setlength{\rightskip}{0pt plus 5cm}const double Threshold = 20.\-0}}\label{neuron_8hpp_a701fdba2291c3e0416556885d978b59c}
+
+
+Maximum potential limit \mbox{[}m\-V\mbox{]}. 
+
+\hypertarget{neuron_8hpp_ae99abc0969f80b82b39a639e6889b7db}{\index{neuron.\-hpp@{neuron.\-hpp}!Vext@{Vext}}
+\index{Vext@{Vext}!neuron.hpp@{neuron.\-hpp}}
+\subsubsection[{Vext}]{\setlength{\rightskip}{0pt plus 5cm}const double Vext = {\bf Threshold} $\ast$ {\bf Eta} /({\bf Amplitude}$\ast${\bf tau})}}\label{neuron_8hpp_ae99abc0969f80b82b39a639e6889b7db}
+
+
+External frequency. 
+

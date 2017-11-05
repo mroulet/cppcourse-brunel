@@ -1,0 +1,341 @@
+\hypertarget{classNeuron}{\section{Neuron Class Reference}
+\label{classNeuron}\index{Neuron@{Neuron}}
+}
+
+
+Managing the neuron simulation.  
+
+
+
+
+{\ttfamily \#include $<$neuron.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNeuron_a2aba4407406fe50efd2f23012cfca467}{Neuron} (double stop\-Time, double iext=0.\-0, double potential=0.\-0)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classNeuron_a94a250ce7e167760e593979b899745b1}{$\sim$\-Neuron} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+double \hyperlink{classNeuron_ae2bc004a58621da0d1c51591400ca87d}{get\-Potential} () const 
+\begin{DoxyCompactList}\small\item\em Get the potential. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classNeuron_a080fe09731808e0b8210713a7e3fdc3a}{get\-Nb\-Spikes} () const 
+\begin{DoxyCompactList}\small\item\em Get the number of spikes. \end{DoxyCompactList}\item 
+int \hyperlink{classNeuron_a32e9f0c0bb4bdb3ed8161c199ebe1207}{get\-Refractory\-Time} () const 
+\begin{DoxyCompactList}\small\item\em Get the refractory time. \end{DoxyCompactList}\item 
+bool \hyperlink{classNeuron_a0567bdec92009aaee9b3aea6b13f95e3}{has\-Spike} () const 
+\begin{DoxyCompactList}\small\item\em Get the potential state. \end{DoxyCompactList}\item 
+bool \hyperlink{classNeuron_a405d790f14e9bd3fea033dc84ae4b53f}{is\-Inhibiter} () const 
+\begin{DoxyCompactList}\small\item\em Get the type of the neuron. \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_aeb0bb5498270ef19067e9f3c0da07504}{set\-Potential} (double potential)
+\begin{DoxyCompactList}\small\item\em Set potential. \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_afeb99227718974907e783f56cd5ec333}{set\-Is\-Inhibiter} (bool type)
+\begin{DoxyCompactList}\small\item\em Set the neuron type. \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_a32aa33ce0a7604fc1f5989a0311a8106}{set\-Iext} (double iext)
+\begin{DoxyCompactList}\small\item\em Set the external current. \end{DoxyCompactList}\item 
+double \hyperlink{classNeuron_a8d9657df147998e311e34e535f64cba6}{membrane\-Eq} (size\-\_\-t read\-Box)
+\begin{DoxyCompactList}\small\item\em Calculate the membrane potential of the \hyperlink{classNeuron}{Neuron}. \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_a8b6ba307a2a97129356ce6f704349eb8}{update} (size\-\_\-t read\-Box)
+\begin{DoxyCompactList}\small\item\em Run the simulation of one neuron. \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_acb7b16b04ed3a5529319c2cb984f5840}{fill\-Buffer} (double spike, size\-\_\-t write\-Box)
+\begin{DoxyCompactList}\small\item\em Record the spikes received by a connected neuron into the time buffer at time t + Delay. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\-::vector$<$ int $>$ \hyperlink{classNeuron_a8343c4f29429df0b3a843fea612e4bd3}{buffer\-\_\-}
+\begin{DoxyCompactList}\small\item\em Buffer of size delay + 1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classNeuron_aa38f38c0da520dc1cb5d374c70e974eb}{stop\-Time\-\_\-}
+\begin{DoxyCompactList}\small\item\em Stop\-Time of the neuron simulation (needed for gtest). \end{DoxyCompactList}\item 
+int \hyperlink{classNeuron_a28159eb51ce5e6a17d499d370b7e3db4}{refractory\-Time\-\_\-}
+\begin{DoxyCompactList}\small\item\em Refractory timer\-: is set to 20 time step and will be decremented when the neuron is refractory. \end{DoxyCompactList}\item 
+double \hyperlink{classNeuron_a44e7bbc4265ea4e0abe5d8f3d3bc5929}{iext\-\_\-}
+\begin{DoxyCompactList}\small\item\em External Current. \end{DoxyCompactList}\item 
+double \hyperlink{classNeuron_a91b43a5da7310e83fa2b66bf1be87b66}{potential\-\_\-}
+\begin{DoxyCompactList}\small\item\em Membrane potential. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classNeuron_a372b2a6f32c19f0462a305ab599df0fd}{nb\-Spikes\-\_\-}
+\begin{DoxyCompactList}\small\item\em Number of spikes. \end{DoxyCompactList}\item 
+bool \hyperlink{classNeuron_a4ad4b397db55b2b0b933e97768dba95a}{has\-Spike\-\_\-}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classNeuron}{Neuron} spike state. \end{DoxyCompactList}\item 
+bool \hyperlink{classNeuron_a218ea40b8a1fba65ddb5420ac014fa04}{is\-Inhibiter\-\_\-}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classNeuron}{Neuron} type\-: return true if is inhibiter return false if is excitatory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Managing the neuron simulation. 
+
+Temporal evolution of the neuron\-: its potential, state and number of spikes. Each steptime the membrane potential is updated and the spike condition checked. Each neuron receives activity (spikes) from its local network (excitatory and inhibitory) and from the rest of the brain (only excitatory). 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classNeuron_a2aba4407406fe50efd2f23012cfca467}{\index{Neuron@{Neuron}!Neuron@{Neuron}}
+\index{Neuron@{Neuron}!Neuron@{Neuron}}
+\subsubsection[{Neuron}]{\setlength{\rightskip}{0pt plus 5cm}Neuron\-::\-Neuron (
+\begin{DoxyParamCaption}
+\item[{double}]{stop\-Time, }
+\item[{double}]{iext = {\ttfamily 0.0}, }
+\item[{double}]{potential = {\ttfamily 0.0}}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a2aba4407406fe50efd2f23012cfca467}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stop\-Time} & of the simuation of the neuron \\
+\hline
+{\em iext} & is the external current. Default value = 0.\-0 \\
+\hline
+{\em potential} & is the membran potential. Its default value = 0.\-0\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Initialisation of the time buffer necessary for the right implemtation of the transmission delay 
+\end{DoxyNote}
+\hypertarget{classNeuron_a94a250ce7e167760e593979b899745b1}{\index{Neuron@{Neuron}!$\sim$\-Neuron@{$\sim$\-Neuron}}
+\index{$\sim$\-Neuron@{$\sim$\-Neuron}!Neuron@{Neuron}}
+\subsubsection[{$\sim$\-Neuron}]{\setlength{\rightskip}{0pt plus 5cm}Neuron\-::$\sim$\-Neuron (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a94a250ce7e167760e593979b899745b1}
+
+
+Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classNeuron_acb7b16b04ed3a5529319c2cb984f5840}{\index{Neuron@{Neuron}!fill\-Buffer@{fill\-Buffer}}
+\index{fill\-Buffer@{fill\-Buffer}!Neuron@{Neuron}}
+\subsubsection[{fill\-Buffer}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::fill\-Buffer (
+\begin{DoxyParamCaption}
+\item[{double}]{spike, }
+\item[{size\-\_\-t}]{write\-Box}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_acb7b16b04ed3a5529319c2cb984f5840}
+
+
+Record the spikes received by a connected neuron into the time buffer at time t + Delay. 
+
+If the potential is greater than the threshold, a spike is signal at time t to the post synaptic neuron. The post synaptic neuron responds at t + Delay
+
+
+\begin{DoxyParams}{Parameters}
+{\em write\-Box} & is the index in which the spikes are recorded It equals now+\-Delay \\
+\hline
+{\em spike} & is the value transmitted by the neuron varies according to the source neuron which can be inhibitory, excitatory or external.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The buffer size is equal to the number of steptime needed to accomplish the time transmission delay Each step time of the simulation, to fill the buffer, we push\-\_\-back 
+\end{DoxyNote}
+\hypertarget{classNeuron_a080fe09731808e0b8210713a7e3fdc3a}{\index{Neuron@{Neuron}!get\-Nb\-Spikes@{get\-Nb\-Spikes}}
+\index{get\-Nb\-Spikes@{get\-Nb\-Spikes}!Neuron@{Neuron}}
+\subsubsection[{get\-Nb\-Spikes}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Neuron\-::get\-Nb\-Spikes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_a080fe09731808e0b8210713a7e3fdc3a}
+
+
+Get the number of spikes. 
+
+\begin{DoxyReturn}{Returns}
+current value of number of spike that occured. 
+\end{DoxyReturn}
+\hypertarget{classNeuron_ae2bc004a58621da0d1c51591400ca87d}{\index{Neuron@{Neuron}!get\-Potential@{get\-Potential}}
+\index{get\-Potential@{get\-Potential}!Neuron@{Neuron}}
+\subsubsection[{get\-Potential}]{\setlength{\rightskip}{0pt plus 5cm}double Neuron\-::get\-Potential (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_ae2bc004a58621da0d1c51591400ca87d}
+
+
+Get the potential. 
+
+\begin{DoxyReturn}{Returns}
+current value of membrane potential. 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a32e9f0c0bb4bdb3ed8161c199ebe1207}{\index{Neuron@{Neuron}!get\-Refractory\-Time@{get\-Refractory\-Time}}
+\index{get\-Refractory\-Time@{get\-Refractory\-Time}!Neuron@{Neuron}}
+\subsubsection[{get\-Refractory\-Time}]{\setlength{\rightskip}{0pt plus 5cm}int Neuron\-::get\-Refractory\-Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_a32e9f0c0bb4bdb3ed8161c199ebe1207}
+
+
+Get the refractory time. 
+
+\begin{DoxyReturn}{Returns}
+current value of refractory time. 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a0567bdec92009aaee9b3aea6b13f95e3}{\index{Neuron@{Neuron}!has\-Spike@{has\-Spike}}
+\index{has\-Spike@{has\-Spike}!Neuron@{Neuron}}
+\subsubsection[{has\-Spike}]{\setlength{\rightskip}{0pt plus 5cm}bool Neuron\-::has\-Spike (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_a0567bdec92009aaee9b3aea6b13f95e3}
+
+
+Get the potential state. 
+
+\begin{DoxyReturn}{Returns}
+one neuron has a spike if its membrane potential is greater than threshold. 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a405d790f14e9bd3fea033dc84ae4b53f}{\index{Neuron@{Neuron}!is\-Inhibiter@{is\-Inhibiter}}
+\index{is\-Inhibiter@{is\-Inhibiter}!Neuron@{Neuron}}
+\subsubsection[{is\-Inhibiter}]{\setlength{\rightskip}{0pt plus 5cm}bool Neuron\-::is\-Inhibiter (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_a405d790f14e9bd3fea033dc84ae4b53f}
+
+
+Get the type of the neuron. 
+
+\begin{DoxyReturn}{Returns}
+is inhibiter or is excitatory 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a8d9657df147998e311e34e535f64cba6}{\index{Neuron@{Neuron}!membrane\-Eq@{membrane\-Eq}}
+\index{membrane\-Eq@{membrane\-Eq}!Neuron@{Neuron}}
+\subsubsection[{membrane\-Eq}]{\setlength{\rightskip}{0pt plus 5cm}double Neuron\-::membrane\-Eq (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{read\-Box}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a8d9657df147998e311e34e535f64cba6}
+
+
+Calculate the membrane potential of the \hyperlink{classNeuron}{Neuron}. 
+
+General solution of the Brunel linear differential equation. Approximated for a constant current input Iext and a constant amplitude J.
+
+
+\begin{DoxyParams}{Parameters}
+{\em read\-Box} & is the index of the buffer in which the spikes are read in the membrane equation\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the updated value of potential 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a32aa33ce0a7604fc1f5989a0311a8106}{\index{Neuron@{Neuron}!set\-Iext@{set\-Iext}}
+\index{set\-Iext@{set\-Iext}!Neuron@{Neuron}}
+\subsubsection[{set\-Iext}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::set\-Iext (
+\begin{DoxyParamCaption}
+\item[{double}]{iext}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a32aa33ce0a7604fc1f5989a0311a8106}
+
+
+Set the external current. 
+
+Set current value of the external current. \hypertarget{classNeuron_afeb99227718974907e783f56cd5ec333}{\index{Neuron@{Neuron}!set\-Is\-Inhibiter@{set\-Is\-Inhibiter}}
+\index{set\-Is\-Inhibiter@{set\-Is\-Inhibiter}!Neuron@{Neuron}}
+\subsubsection[{set\-Is\-Inhibiter}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::set\-Is\-Inhibiter (
+\begin{DoxyParamCaption}
+\item[{bool}]{type}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_afeb99227718974907e783f56cd5ec333}
+
+
+Set the neuron type. 
+
+Whether the neuron is Excitatory or Inhibitory. \hypertarget{classNeuron_aeb0bb5498270ef19067e9f3c0da07504}{\index{Neuron@{Neuron}!set\-Potential@{set\-Potential}}
+\index{set\-Potential@{set\-Potential}!Neuron@{Neuron}}
+\subsubsection[{set\-Potential}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::set\-Potential (
+\begin{DoxyParamCaption}
+\item[{double}]{potential}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_aeb0bb5498270ef19067e9f3c0da07504}
+
+
+Set potential. 
+
+Set current value of membrane potential. \hypertarget{classNeuron_a8b6ba307a2a97129356ce6f704349eb8}{\index{Neuron@{Neuron}!update@{update}}
+\index{update@{update}!Neuron@{Neuron}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::update (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{read\-Box}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a8b6ba307a2a97129356ce6f704349eb8}
+
+
+Run the simulation of one neuron. 
+
+This function is the main loop of the class \hyperlink{classNeuron}{Neuron}
+
+
+\begin{DoxyParams}{Parameters}
+{\em read\-Box} & is the index of the buffer in which the spikes are read in the membrane equation\\
+\hline
+\end{DoxyParams}
+For a time simulation given\-: if the potential is greater than the threshold we set the neuron refractory if the neuron is refractory the potential is reset otherwise solve the membrane equation to update the potential 
+
+\subsection{Member Data Documentation}
+\hypertarget{classNeuron_a8343c4f29429df0b3a843fea612e4bd3}{\index{Neuron@{Neuron}!buffer\-\_\-@{buffer\-\_\-}}
+\index{buffer\-\_\-@{buffer\-\_\-}!Neuron@{Neuron}}
+\subsubsection[{buffer\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$int$>$ Neuron\-::buffer\-\_\-}}\label{classNeuron_a8343c4f29429df0b3a843fea612e4bd3}
+
+
+Buffer of size delay + 1. 
+
+In network there are two index read\-Box and Write\-Box that define where to read and wrtie spikes transmitted by other neurons. Hence, if I received a spike at time t, it will be read in the buffer case t+ Delay. If a neuron transmit a spike at time t, I write it in the buffer case t + Delay.\-Time buffer containing each spike received at each dt (public for optimisation purpose) \hypertarget{classNeuron_a4ad4b397db55b2b0b933e97768dba95a}{\index{Neuron@{Neuron}!has\-Spike\-\_\-@{has\-Spike\-\_\-}}
+\index{has\-Spike\-\_\-@{has\-Spike\-\_\-}!Neuron@{Neuron}}
+\subsubsection[{has\-Spike\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}bool Neuron\-::has\-Spike\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNeuron_a4ad4b397db55b2b0b933e97768dba95a}
+
+
+\hyperlink{classNeuron}{Neuron} spike state. 
+
+\hypertarget{classNeuron_a44e7bbc4265ea4e0abe5d8f3d3bc5929}{\index{Neuron@{Neuron}!iext\-\_\-@{iext\-\_\-}}
+\index{iext\-\_\-@{iext\-\_\-}!Neuron@{Neuron}}
+\subsubsection[{iext\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}double Neuron\-::iext\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNeuron_a44e7bbc4265ea4e0abe5d8f3d3bc5929}
+
+
+External Current. 
+
+\hypertarget{classNeuron_a218ea40b8a1fba65ddb5420ac014fa04}{\index{Neuron@{Neuron}!is\-Inhibiter\-\_\-@{is\-Inhibiter\-\_\-}}
+\index{is\-Inhibiter\-\_\-@{is\-Inhibiter\-\_\-}!Neuron@{Neuron}}
+\subsubsection[{is\-Inhibiter\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}bool Neuron\-::is\-Inhibiter\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNeuron_a218ea40b8a1fba65ddb5420ac014fa04}
+
+
+\hyperlink{classNeuron}{Neuron} type\-: return true if is inhibiter return false if is excitatory. 
+
+\hypertarget{classNeuron_a372b2a6f32c19f0462a305ab599df0fd}{\index{Neuron@{Neuron}!nb\-Spikes\-\_\-@{nb\-Spikes\-\_\-}}
+\index{nb\-Spikes\-\_\-@{nb\-Spikes\-\_\-}!Neuron@{Neuron}}
+\subsubsection[{nb\-Spikes\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Neuron\-::nb\-Spikes\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNeuron_a372b2a6f32c19f0462a305ab599df0fd}
+
+
+Number of spikes. 
+
+\hypertarget{classNeuron_a91b43a5da7310e83fa2b66bf1be87b66}{\index{Neuron@{Neuron}!potential\-\_\-@{potential\-\_\-}}
+\index{potential\-\_\-@{potential\-\_\-}!Neuron@{Neuron}}
+\subsubsection[{potential\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}double Neuron\-::potential\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNeuron_a91b43a5da7310e83fa2b66bf1be87b66}
+
+
+Membrane potential. 
+
+\hypertarget{classNeuron_a28159eb51ce5e6a17d499d370b7e3db4}{\index{Neuron@{Neuron}!refractory\-Time\-\_\-@{refractory\-Time\-\_\-}}
+\index{refractory\-Time\-\_\-@{refractory\-Time\-\_\-}!Neuron@{Neuron}}
+\subsubsection[{refractory\-Time\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}int Neuron\-::refractory\-Time\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNeuron_a28159eb51ce5e6a17d499d370b7e3db4}
+
+
+Refractory timer\-: is set to 20 time step and will be decremented when the neuron is refractory. 
+
+\hypertarget{classNeuron_aa38f38c0da520dc1cb5d374c70e974eb}{\index{Neuron@{Neuron}!stop\-Time\-\_\-@{stop\-Time\-\_\-}}
+\index{stop\-Time\-\_\-@{stop\-Time\-\_\-}!Neuron@{Neuron}}
+\subsubsection[{stop\-Time\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}double Neuron\-::stop\-Time\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNeuron_aa38f38c0da520dc1cb5d374c70e974eb}
+
+
+Stop\-Time of the neuron simulation (needed for gtest). 
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/localguest/\-Documents/project/cppcourse-\/brunel/src/\hyperlink{neuron_8hpp}{neuron.\-hpp}\item 
+/home/localguest/\-Documents/project/cppcourse-\/brunel/src/\hyperlink{neuron_8cpp}{neuron.\-cpp}\end{DoxyCompactItemize}

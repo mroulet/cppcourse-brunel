@@ -1,0 +1,377 @@
+\hypertarget{classNetwork}{\section{Network Class Reference}
+\label{classNetwork}\index{Network@{Network}}
+}
+
+
+Managing the network simulation of several neurons.  
+
+
+
+
+{\ttfamily \#include $<$network.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNetwork_a8e414d020229a77d815adf91e9b9d710}{Network} (double network\-Stop\-Time, std\-::vector$<$ \hyperlink{classNeuron}{Neuron} $\ast$ $>$ neurons)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classNetwork_a7a4e19cdb4bf0c7ecf82baa643831492}{$\sim$\-Network} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+std\-::vector$<$ \hyperlink{classNeuron}{Neuron} $\ast$ $>$ \hyperlink{classNetwork_a8032b42ba5c9c445dcc0dd0a4916f633}{get\-Neurons} () const 
+\begin{DoxyCompactList}\small\item\em Get neurons. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classNetwork_ae803a9956ee15fe05822a3b5a5da77aa}{get\-Nb\-Neurons} () const 
+\begin{DoxyCompactList}\small\item\em Get the number of neurons inside the network. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classNetwork_a3dc4d1a4177641c978bede49a419e1d5}{get\-Nb\-Excitatory\-Connections} ()
+\begin{DoxyCompactList}\small\item\em Get the number of excitatory connections. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classNetwork_abbd9cacd4ac8393670d659bc326de701}{get\-Nb\-Inhibitory\-Connections} ()
+\begin{DoxyCompactList}\small\item\em Get th number of inhibitory connections. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classNetwork_a9045d83b08661a561b8026feb34e408a}{get\-Nb\-External\-Connections} ()
+\begin{DoxyCompactList}\small\item\em Get the number of external connections. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classNetwork_a526fa535ce908e13c2c1ed958b2559a1}{get\-Read\-Box} () const 
+\begin{DoxyCompactList}\small\item\em Get the index of the buffer in which the spikes are read. \end{DoxyCompactList}\item 
+void \hyperlink{classNetwork_ad29becc42053fc83b9fab0152f95ecb7}{write\-Spike\-To\-File} ()
+\begin{DoxyCompactList}\small\item\em Record the total number of spikes at each dt in the file \char`\"{}spikes2.\-txt\char`\"{}. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classNetwork_a39ab88a137f3f3cee99f1a5f0a47a867}{poisson} ()
+\begin{DoxyCompactList}\small\item\em Poisson distribution of external Spike. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classNetwork_a28c7fc76c8eff0fae4757822df03177e}{uniform} (unsigned int size)
+\begin{DoxyCompactList}\small\item\em Uniform distribution of connection. \end{DoxyCompactList}\item 
+void \hyperlink{classNetwork_a208390d531b3a7356a4cf47e5e0a3579}{update\-Buffer\-Index} ()
+\begin{DoxyCompactList}\small\item\em Define whether the neuron is excitatory or inhibitory. \end{DoxyCompactList}\item 
+void \hyperlink{classNetwork_ac3c2f344cd4d2006f26b2a455f065495}{define\-Type\-Neuron} ()
+\begin{DoxyCompactList}\small\item\em define the type of the neuron. Whether it is an inhibitory or excitatory neuron. \end{DoxyCompactList}\item 
+void \hyperlink{classNetwork_ad8089bfe777cff5283285629cd696173}{connect} ()
+\begin{DoxyCompactList}\small\item\em Connect the local neurons inside the network. \end{DoxyCompactList}\item 
+void \hyperlink{classNetwork_ab07bb6f6d9020b9eb230551083ea929f}{update} ()
+\begin{DoxyCompactList}\small\item\em Run the simulation of the network. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classNetwork_ad07d3a8419cece935015b1b61c09912b}{network\-Start\-Time\-\_\-}
+\begin{DoxyCompactList}\small\item\em Start time of the simulation. \end{DoxyCompactList}\item 
+double \hyperlink{classNetwork_ad0eb983a5fb38dd9ab4d37db43ea9776}{network\-Stop\-Time\-\_\-}
+\begin{DoxyCompactList}\small\item\em End time of the simulation. \end{DoxyCompactList}\item 
+std\-::vector$<$ \hyperlink{classNeuron}{Neuron} $\ast$ $>$ \hyperlink{classNetwork_ad5054ddd778795d5ceaac9e6adf050cd}{neurons\-\_\-}
+\begin{DoxyCompactList}\small\item\em Table of neurons of the network. \end{DoxyCompactList}\item 
+std\-::mt19937 \hyperlink{classNetwork_a248c1c21424237413df17ba518c61f31}{generator}
+\begin{DoxyCompactList}\small\item\em Mester Twyster engine for random distribution. \end{DoxyCompactList}\item 
+std\-::poisson\-\_\-distribution\\*
+$<$ unsigned int $>$ \hyperlink{classNetwork_a41d662a681a79785a86849fdc0a1657f}{distribution\-Poisson}
+\begin{DoxyCompactList}\small\item\em Poisson distribution for external spikes. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classNetwork_a22d94d85ea0c01409d600907976ab699}{nb\-Spikes\-Total\-\_\-}
+\begin{DoxyCompactList}\small\item\em Number of spikes of all neurons that happen each step time. \end{DoxyCompactList}\item 
+std\-::vector$<$ std\-::vector\\*
+$<$ unsigned int $>$ $>$ \hyperlink{classNetwork_ac1a1521c153f98e81c3fc57c09e29435}{index\-\_\-}
+\begin{DoxyCompactList}\small\item\em Matrix of index corresponding to neurons. \end{DoxyCompactList}\item 
+double \hyperlink{classNetwork_a56ae0c805aa9ab5a7eda4e17a6c5ca0a}{clock\-\_\-}
+\begin{DoxyCompactList}\small\item\em Global clock of the simulation. \end{DoxyCompactList}\item 
+std\-::ofstream $\ast$ \hyperlink{classNetwork_a93e82bb1f3a243c36658f17d7579312a}{spikes\-File\-\_\-}
+\begin{DoxyCompactList}\small\item\em File for gnuplot graph. \end{DoxyCompactList}\item 
+std\-::ofstream $\ast$ \hyperlink{classNetwork_ae1ca8efaa48617ef6114c101227f6ac0}{spikes\-Index\-File\-\_\-}
+\begin{DoxyCompactList}\small\item\em File for Jupyter graphs. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classNetwork_a431377135d1e87dd3c2481308909cf96}{write\-Box\-\_\-}
+\begin{DoxyCompactList}\small\item\em Buffer index in which your record file. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classNetwork_a6e1a50329d78f8b7e4b63f6c441a83d0}{read\-Box\-\_\-}
+\begin{DoxyCompactList}\small\item\em Buffer index in which your read file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Managing the network simulation of several neurons. 
+
+Temporal evolution of a network of numerous neurons randomly connected. The network define the neuron type. According to Brunel's model, if N is the number of neuron, there are then Ni = 0.\-2 N inhibitory neurons and Ne = 0.\-8 N excitatory neurons. Each neuron receives input from 10\% of the other neurons. Connection strength depends on J = Amplitude and g = Ji / Je
+
+\begin{DoxyNote}{Note}
+Brunel's balanced cortex model contains 10 000 excitatory neurons and 2500 inhibitory neurons 
+\end{DoxyNote}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classNetwork_a8e414d020229a77d815adf91e9b9d710}{\index{Network@{Network}!Network@{Network}}
+\index{Network@{Network}!Network@{Network}}
+\subsubsection[{Network}]{\setlength{\rightskip}{0pt plus 5cm}Network\-::\-Network (
+\begin{DoxyParamCaption}
+\item[{double}]{network\-Stop\-Time, }
+\item[{std\-::vector$<$ {\bf Neuron} $\ast$ $>$}]{neurons}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_a8e414d020229a77d815adf91e9b9d710}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em network\-Stop\-Time} & determine the end time of the simulation \\
+\hline
+{\em neurons} & is the list of local neurons connected \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNetwork_a7a4e19cdb4bf0c7ecf82baa643831492}{\index{Network@{Network}!$\sim$\-Network@{$\sim$\-Network}}
+\index{$\sim$\-Network@{$\sim$\-Network}!Network@{Network}}
+\subsubsection[{$\sim$\-Network}]{\setlength{\rightskip}{0pt plus 5cm}Network\-::$\sim$\-Network (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_a7a4e19cdb4bf0c7ecf82baa643831492}
+
+
+Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classNetwork_ad8089bfe777cff5283285629cd696173}{\index{Network@{Network}!connect@{connect}}
+\index{connect@{connect}!Network@{Network}}
+\subsubsection[{connect}]{\setlength{\rightskip}{0pt plus 5cm}void Network\-::connect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_ad8089bfe777cff5283285629cd696173}
+
+
+Connect the local neurons inside the network. 
+
+Each neuron receives input from 10\% of other neurons. Hence, there are 0.\-1$\ast$\-Ne excitatory connections and 0.\-1$\ast$\-Ni inhibitory neurons. Each neuron receives randomly chosen connections. To generate the connection we need uniformly distributed random numbers. \begin{DoxyNote}{Note}
+One neuron can connect several times to the same neuron and it can connect to itself. 
+\end{DoxyNote}
+\hypertarget{classNetwork_ac3c2f344cd4d2006f26b2a455f065495}{\index{Network@{Network}!define\-Type\-Neuron@{define\-Type\-Neuron}}
+\index{define\-Type\-Neuron@{define\-Type\-Neuron}!Network@{Network}}
+\subsubsection[{define\-Type\-Neuron}]{\setlength{\rightskip}{0pt plus 5cm}void Network\-::define\-Type\-Neuron (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_ac3c2f344cd4d2006f26b2a455f065495}
+
+
+define the type of the neuron. Whether it is an inhibitory or excitatory neuron. 
+
+\begin{DoxyNote}{Note}
+As in Brunel's model ther are 0.\-2\-N inhibitory neurons, the first 0.\-2\-N are defin inhibitory. 
+\end{DoxyNote}
+\hypertarget{classNetwork_a3dc4d1a4177641c978bede49a419e1d5}{\index{Network@{Network}!get\-Nb\-Excitatory\-Connections@{get\-Nb\-Excitatory\-Connections}}
+\index{get\-Nb\-Excitatory\-Connections@{get\-Nb\-Excitatory\-Connections}!Network@{Network}}
+\subsubsection[{get\-Nb\-Excitatory\-Connections}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Network\-::get\-Nb\-Excitatory\-Connections (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_a3dc4d1a4177641c978bede49a419e1d5}
+
+
+Get the number of excitatory connections. 
+
+\begin{DoxyReturn}{Returns}
+an integer 
+\end{DoxyReturn}
+\hypertarget{classNetwork_a9045d83b08661a561b8026feb34e408a}{\index{Network@{Network}!get\-Nb\-External\-Connections@{get\-Nb\-External\-Connections}}
+\index{get\-Nb\-External\-Connections@{get\-Nb\-External\-Connections}!Network@{Network}}
+\subsubsection[{get\-Nb\-External\-Connections}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Network\-::get\-Nb\-External\-Connections (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_a9045d83b08661a561b8026feb34e408a}
+
+
+Get the number of external connections. 
+
+\begin{DoxyReturn}{Returns}
+an integer 
+\end{DoxyReturn}
+\hypertarget{classNetwork_abbd9cacd4ac8393670d659bc326de701}{\index{Network@{Network}!get\-Nb\-Inhibitory\-Connections@{get\-Nb\-Inhibitory\-Connections}}
+\index{get\-Nb\-Inhibitory\-Connections@{get\-Nb\-Inhibitory\-Connections}!Network@{Network}}
+\subsubsection[{get\-Nb\-Inhibitory\-Connections}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Network\-::get\-Nb\-Inhibitory\-Connections (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_abbd9cacd4ac8393670d659bc326de701}
+
+
+Get th number of inhibitory connections. 
+
+\begin{DoxyReturn}{Returns}
+an integer 
+\end{DoxyReturn}
+\hypertarget{classNetwork_ae803a9956ee15fe05822a3b5a5da77aa}{\index{Network@{Network}!get\-Nb\-Neurons@{get\-Nb\-Neurons}}
+\index{get\-Nb\-Neurons@{get\-Nb\-Neurons}!Network@{Network}}
+\subsubsection[{get\-Nb\-Neurons}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Network\-::get\-Nb\-Neurons (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNetwork_ae803a9956ee15fe05822a3b5a5da77aa}
+
+
+Get the number of neurons inside the network. 
+
+\hypertarget{classNetwork_a8032b42ba5c9c445dcc0dd0a4916f633}{\index{Network@{Network}!get\-Neurons@{get\-Neurons}}
+\index{get\-Neurons@{get\-Neurons}!Network@{Network}}
+\subsubsection[{get\-Neurons}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Neuron} $\ast$ $>$ Network\-::get\-Neurons (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNetwork_a8032b42ba5c9c445dcc0dd0a4916f633}
+
+
+Get neurons. 
+
+\hypertarget{classNetwork_a526fa535ce908e13c2c1ed958b2559a1}{\index{Network@{Network}!get\-Read\-Box@{get\-Read\-Box}}
+\index{get\-Read\-Box@{get\-Read\-Box}!Network@{Network}}
+\subsubsection[{get\-Read\-Box}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Network\-::get\-Read\-Box (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNetwork_a526fa535ce908e13c2c1ed958b2559a1}
+
+
+Get the index of the buffer in which the spikes are read. 
+
+\hypertarget{classNetwork_a39ab88a137f3f3cee99f1a5f0a47a867}{\index{Network@{Network}!poisson@{poisson}}
+\index{poisson@{poisson}!Network@{Network}}
+\subsubsection[{poisson}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Network\-::poisson (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_a39ab88a137f3f3cee99f1a5f0a47a867}
+
+
+Poisson distribution of external Spike. 
+
+\begin{DoxyReturn}{Returns}
+a random integer that will define the number of external spike receive 
+\end{DoxyReturn}
+\hypertarget{classNetwork_a28c7fc76c8eff0fae4757822df03177e}{\index{Network@{Network}!uniform@{uniform}}
+\index{uniform@{uniform}!Network@{Network}}
+\subsubsection[{uniform}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Network\-::uniform (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{size}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_a28c7fc76c8eff0fae4757822df03177e}
+
+
+Uniform distribution of connection. 
+
+\hypertarget{classNetwork_ab07bb6f6d9020b9eb230551083ea929f}{\index{Network@{Network}!update@{update}}
+\index{update@{update}!Network@{Network}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void Network\-::update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_ab07bb6f6d9020b9eb230551083ea929f}
+
+
+Run the simulation of the network. 
+
+Main simulation loop. The network updates each neurons. If a spike occurs in a neuron, the spike is transmitted to the connected neurons at current time t + delay. \begin{DoxyNote}{Note}
+The network handles the recording into the time buffer of each neuron. 
+\end{DoxyNote}
+\hypertarget{classNetwork_a208390d531b3a7356a4cf47e5e0a3579}{\index{Network@{Network}!update\-Buffer\-Index@{update\-Buffer\-Index}}
+\index{update\-Buffer\-Index@{update\-Buffer\-Index}!Network@{Network}}
+\subsubsection[{update\-Buffer\-Index}]{\setlength{\rightskip}{0pt plus 5cm}void Network\-::update\-Buffer\-Index (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_a208390d531b3a7356a4cf47e5e0a3579}
+
+
+Define whether the neuron is excitatory or inhibitory. 
+
+There are Ne excitatory neurons and Ni inhibitory neurons integrate and fire neurons update the index read\-Box and write\-Box \hypertarget{classNetwork_ad29becc42053fc83b9fab0152f95ecb7}{\index{Network@{Network}!write\-Spike\-To\-File@{write\-Spike\-To\-File}}
+\index{write\-Spike\-To\-File@{write\-Spike\-To\-File}!Network@{Network}}
+\subsubsection[{write\-Spike\-To\-File}]{\setlength{\rightskip}{0pt plus 5cm}void Network\-::write\-Spike\-To\-File (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_ad29becc42053fc83b9fab0152f95ecb7}
+
+
+Record the total number of spikes at each dt in the file \char`\"{}spikes2.\-txt\char`\"{}. 
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classNetwork_a56ae0c805aa9ab5a7eda4e17a6c5ca0a}{\index{Network@{Network}!clock\-\_\-@{clock\-\_\-}}
+\index{clock\-\_\-@{clock\-\_\-}!Network@{Network}}
+\subsubsection[{clock\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}double Network\-::clock\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNetwork_a56ae0c805aa9ab5a7eda4e17a6c5ca0a}
+
+
+Global clock of the simulation. 
+
+\hypertarget{classNetwork_a41d662a681a79785a86849fdc0a1657f}{\index{Network@{Network}!distribution\-Poisson@{distribution\-Poisson}}
+\index{distribution\-Poisson@{distribution\-Poisson}!Network@{Network}}
+\subsubsection[{distribution\-Poisson}]{\setlength{\rightskip}{0pt plus 5cm}std\-::poisson\-\_\-distribution$<$unsigned int$>$ Network\-::distribution\-Poisson\hspace{0.3cm}{\ttfamily [private]}}}\label{classNetwork_a41d662a681a79785a86849fdc0a1657f}
+
+
+Poisson distribution for external spikes. 
+
+\hypertarget{classNetwork_a248c1c21424237413df17ba518c61f31}{\index{Network@{Network}!generator@{generator}}
+\index{generator@{generator}!Network@{Network}}
+\subsubsection[{generator}]{\setlength{\rightskip}{0pt plus 5cm}std\-::mt19937 Network\-::generator\hspace{0.3cm}{\ttfamily [private]}}}\label{classNetwork_a248c1c21424237413df17ba518c61f31}
+
+
+Mester Twyster engine for random distribution. 
+
+\hypertarget{classNetwork_ac1a1521c153f98e81c3fc57c09e29435}{\index{Network@{Network}!index\-\_\-@{index\-\_\-}}
+\index{index\-\_\-@{index\-\_\-}!Network@{Network}}
+\subsubsection[{index\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$std\-::vector$<$ unsigned int$>$ $>$ Network\-::index\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNetwork_ac1a1521c153f98e81c3fc57c09e29435}
+
+
+Matrix of index corresponding to neurons. 
+
+The first vector contains all the source neurons of the network. The second vector contains all the target of each source neuron. \hypertarget{classNetwork_a22d94d85ea0c01409d600907976ab699}{\index{Network@{Network}!nb\-Spikes\-Total\-\_\-@{nb\-Spikes\-Total\-\_\-}}
+\index{nb\-Spikes\-Total\-\_\-@{nb\-Spikes\-Total\-\_\-}!Network@{Network}}
+\subsubsection[{nb\-Spikes\-Total\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Network\-::nb\-Spikes\-Total\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNetwork_a22d94d85ea0c01409d600907976ab699}
+
+
+Number of spikes of all neurons that happen each step time. 
+
+\hypertarget{classNetwork_ad07d3a8419cece935015b1b61c09912b}{\index{Network@{Network}!network\-Start\-Time\-\_\-@{network\-Start\-Time\-\_\-}}
+\index{network\-Start\-Time\-\_\-@{network\-Start\-Time\-\_\-}!Network@{Network}}
+\subsubsection[{network\-Start\-Time\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}double Network\-::network\-Start\-Time\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNetwork_ad07d3a8419cece935015b1b61c09912b}
+
+
+Start time of the simulation. 
+
+\hypertarget{classNetwork_ad0eb983a5fb38dd9ab4d37db43ea9776}{\index{Network@{Network}!network\-Stop\-Time\-\_\-@{network\-Stop\-Time\-\_\-}}
+\index{network\-Stop\-Time\-\_\-@{network\-Stop\-Time\-\_\-}!Network@{Network}}
+\subsubsection[{network\-Stop\-Time\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}double Network\-::network\-Stop\-Time\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNetwork_ad0eb983a5fb38dd9ab4d37db43ea9776}
+
+
+End time of the simulation. 
+
+\hypertarget{classNetwork_ad5054ddd778795d5ceaac9e6adf050cd}{\index{Network@{Network}!neurons\-\_\-@{neurons\-\_\-}}
+\index{neurons\-\_\-@{neurons\-\_\-}!Network@{Network}}
+\subsubsection[{neurons\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<${\bf Neuron}$\ast$$>$ Network\-::neurons\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNetwork_ad5054ddd778795d5ceaac9e6adf050cd}
+
+
+Table of neurons of the network. 
+
+\hypertarget{classNetwork_a6e1a50329d78f8b7e4b63f6c441a83d0}{\index{Network@{Network}!read\-Box\-\_\-@{read\-Box\-\_\-}}
+\index{read\-Box\-\_\-@{read\-Box\-\_\-}!Network@{Network}}
+\subsubsection[{read\-Box\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Network\-::read\-Box\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNetwork_a6e1a50329d78f8b7e4b63f6c441a83d0}
+
+
+Buffer index in which your read file. 
+
+Index in which your read spike taking into account the Delay. Is incremented each dt, when index 14 is reached, read\-Box is set to 0 \hypertarget{classNetwork_a93e82bb1f3a243c36658f17d7579312a}{\index{Network@{Network}!spikes\-File\-\_\-@{spikes\-File\-\_\-}}
+\index{spikes\-File\-\_\-@{spikes\-File\-\_\-}!Network@{Network}}
+\subsubsection[{spikes\-File\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}std\-::ofstream$\ast$ Network\-::spikes\-File\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNetwork_a93e82bb1f3a243c36658f17d7579312a}
+
+
+File for gnuplot graph. 
+
+Record of the total number of spikes at each dt Gnuplot graph\-: xrange\-: time in ms / yrange\-: number of spikes \hypertarget{classNetwork_ae1ca8efaa48617ef6114c101227f6ac0}{\index{Network@{Network}!spikes\-Index\-File\-\_\-@{spikes\-Index\-File\-\_\-}}
+\index{spikes\-Index\-File\-\_\-@{spikes\-Index\-File\-\_\-}!Network@{Network}}
+\subsubsection[{spikes\-Index\-File\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}std\-::ofstream$\ast$ Network\-::spikes\-Index\-File\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNetwork_ae1ca8efaa48617ef6114c101227f6ac0}
+
+
+File for Jupyter graphs. 
+
+Record of the each neuron index that spikes and its corresponding time spike First jupyter graph\-: xrange\-: time in ms / yrange\-: index of the first 50 neurons Second jupyter graph\-: xrange\-: time in ms / yrange\-: spikes count \hypertarget{classNetwork_a431377135d1e87dd3c2481308909cf96}{\index{Network@{Network}!write\-Box\-\_\-@{write\-Box\-\_\-}}
+\index{write\-Box\-\_\-@{write\-Box\-\_\-}!Network@{Network}}
+\subsubsection[{write\-Box\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Network\-::write\-Box\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNetwork_a431377135d1e87dd3c2481308909cf96}
+
+
+Buffer index in which your record file. 
+
+Index in which your record spike taking into account the Delay. Is incremented each dt, when index 14 is reached, write\-Box is set to 0 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/localguest/\-Documents/project/cppcourse-\/brunel/src/\hyperlink{network_8hpp}{network.\-hpp}\item 
+/home/localguest/\-Documents/project/cppcourse-\/brunel/src/\hyperlink{network_8cpp}{network.\-cpp}\end{DoxyCompactItemize}
