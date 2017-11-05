@@ -40,6 +40,7 @@ From the build directory, you can run the unit tests with the command line:
 	Run the program from the build directory.
 	Choose the number of neurons of your network.
 	Choose the duration of simulation.
+	For graph C with 12500 neurons and 1200 ms, the programm will run in 24 secondes.
 	(To generate the graphs, See section Generate graph with matplotlib or gnuplot.)
 	
 
