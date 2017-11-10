@@ -75,7 +75,8 @@ TEST (NeuronTest3, NegativeInput) {
 
 TEST (NeuronTest5, oneNeuronSimulationSpikes) {
 	Neuron neuron(1, 1.01);
-	//We know that spikes imes arrive at 92.4ms 186.9ms 281.3ms 376.5;
+	//We know that spikes times arrive at 92.4ms 186.8ms 281.2ms 376.6;
+	//you can verify this with decommenting line 100 in neuron.cpp
 	
 	unsigned int j(0);
 	while (j < 4000) {

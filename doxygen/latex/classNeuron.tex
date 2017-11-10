@@ -60,7 +60,9 @@ unsigned int \hyperlink{classNeuron_a372b2a6f32c19f0462a305ab599df0fd}{nb\-Spike
 bool \hyperlink{classNeuron_a4ad4b397db55b2b0b933e97768dba95a}{has\-Spike\-\_\-}
 \begin{DoxyCompactList}\small\item\em \hyperlink{classNeuron}{Neuron} spike state. \end{DoxyCompactList}\item 
 bool \hyperlink{classNeuron_a218ea40b8a1fba65ddb5420ac014fa04}{is\-Inhibiter\-\_\-}
-\begin{DoxyCompactList}\small\item\em \hyperlink{classNeuron}{Neuron} type\-: return true if is inhibiter return false if is excitatory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classNeuron}{Neuron} type\-: return true if is inhibiter return false if is excitatory. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classNeuron_a03bbbd9317ed48f469e589c33bc5356a}{time\-\_\-}
+\begin{DoxyCompactList}\small\item\em clock\-\_\- of the neuron simulation. Only needed for the cout in the gtest \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -130,7 +132,7 @@ If the potential is greater than the threshold, a spike is signal at time t to t
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-The buffer size is equal to the number of steptime needed to accomplish the time transmission delay Each step time of the simulation, to fill the buffer, we push\-\_\-back 
+The buffer size is equal to the number of steptime needed to accomplish the time transmission delay +1. 
 \end{DoxyNote}
 \hypertarget{classNeuron_a080fe09731808e0b8210713a7e3fdc3a}{\index{Neuron@{Neuron}!get\-Nb\-Spikes@{get\-Nb\-Spikes}}
 \index{get\-Nb\-Spikes@{get\-Nb\-Spikes}!Neuron@{Neuron}}
@@ -333,9 +335,16 @@ Refractory timer\-: is set to 20 time step and will be decremented when the neur
 
 Stop\-Time of the neuron simulation (needed for gtest). 
 
+\hypertarget{classNeuron_a03bbbd9317ed48f469e589c33bc5356a}{\index{Neuron@{Neuron}!time\-\_\-@{time\-\_\-}}
+\index{time\-\_\-@{time\-\_\-}!Neuron@{Neuron}}
+\subsubsection[{time\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Neuron\-::time\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classNeuron_a03bbbd9317ed48f469e589c33bc5356a}
+
+
+clock\-\_\- of the neuron simulation. Only needed for the cout in the gtest 
+
 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
-/home/localguest/\-Documents/project/cppcourse-\/brunel/src/\hyperlink{neuron_8hpp}{neuron.\-hpp}\item 
-/home/localguest/\-Documents/project/cppcourse-\/brunel/src/\hyperlink{neuron_8cpp}{neuron.\-cpp}\end{DoxyCompactItemize}
+/home/\-I\-N\-T\-R\-A\-N\-E\-T/mroulet/myfiles/\-B\-A3/cppcourse-\/brunel/src/\hyperlink{neuron_8hpp}{neuron.\-hpp}\item 
+/home/\-I\-N\-T\-R\-A\-N\-E\-T/mroulet/myfiles/\-B\-A3/cppcourse-\/brunel/src/\hyperlink{neuron_8cpp}{neuron.\-cpp}\end{DoxyCompactItemize}

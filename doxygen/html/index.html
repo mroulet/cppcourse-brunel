@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>My Project: Main Page</title>
+<title>Neuron Project: Main Page</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Neuron Project
    </div>
   </td>
  </tr>
@@ -75,10 +75,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">My Project Documentation</div>  </div>
+<div class="title">Neuron Project Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Margaux Roulet</p>
+<div class="textblock"><p>Margaux Roulet, <a href="#" onclick="location.href='mai'+'lto:'+'mar'+'ga'+'ux.'+'ro'+'ule'+'t@'+'epf'+'l.'+'ch'; return false;">marga<span style="display: none;">.nosp@m.</span>ux.r<span style="display: none;">.nosp@m.</span>oulet<span style="display: none;">.nosp@m.</span>@epf<span style="display: none;">.nosp@m.</span>l.ch</a></p>
 <p>sciper: 274274</p>
 <p>BA3 SV EPFL</p>
 <p>CS116-2017</p>
@@ -98,7 +98,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     Graph B: g = 6.0 // Eta = 4.0 
     Graph C: g = 5.0 // Eta = 2.0
     Graph D: g = 4.5 // Eta = 0.9   
-</pre><p>Run the program from the build directory. Choose the number of neurons of your network. Choose the duration of simulation. (To generate the graphs, See section Generate graph with matplotlib or gnuplot.)</p>
+</pre><p>Run the program from the build directory. Choose the number of neurons of your network. Choose the duration of simulation. For graph C, with 12500 neurons and 1200 ms, the program will run in 24 secondes. (To generate the graphs, See section Generate graph with matplotlib or gnuplot.)</p>
 <h3>UNIT TESTS:</h3>
 <h4>Tests with one neuron:</h4>
 <p>Test 1: Test the membrane potential value of one neuron</p>
@@ -106,9 +106,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Test 3: Test the membrane equation with an negative input current</p>
 <p>Test 4: Test the simulation of one neuron during 400 ms</p>
 <h4>Test with two neurons:</h4>
-<p>Test 1: Test the spikes Time arrival of one neuron</p>
+<p>Test 1: Test the spikes transmission Time arrival of two neuron.</p>
 <p>Test 2: Test the transmission of spikes from an inhibitory source neuron to a neuron.</p>
-<p>Test 3: Test the tranmission of spikes from a excitatory source neuron to a neuron.</p>
+<p>Test 3: Test the tranmission of spikes from an excitatory source neuron to a neuron.</p>
 <h4>Test on the network:</h4>
 <p>Test 1: Test the type definition and right number of the neurons: either inhibitory or excitatory</p>
 <p>Test 2: Test the right connections of the neurons within the network.</p>
@@ -116,14 +116,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>From the build directory, type the next command line: </p>
 <pre class="fragment">    xdg-open ../doxygen/html/index.html
 </pre><h3>GENERATE GRAPH WITH MATPLOTLIB:</h3>
-<p>We reproduce figure 8 from Brunel's document. Note that the python script has been implemented according to the slides. figure page 6 of week 7.</p>
-<p>Hence, axe x = Time [ms] // axe y = Rate [Hz]</p>
-<p>The first subplot displays the spike's time according to the neuron index. The second subplot displays the rate of spikes.</p>
+<p>We reproduce figure 8 from Brunel's document.</p>
+<p>Hence, axe x = Time [ms] // axe y = Number of spikes</p>
+<p>The first subplot displays the spike's time according to the neuron index. The second subplot displays the number of spikes at each dt (dt = 0.1 ms).</p>
 <p>To produce correct result, you should run the program with the next features: </p>
 <pre class="fragment">    Number of neurons: 12500
-    Duration of simulation: 300
+    Duration of simulation: 1200
 </pre><p>Run the program. To generate the graph, type the next command line, from the build directory: </p>
 <pre class="fragment">    python "../graphs/script.py"
+</pre><p>To adapt the y axe's range to N (= max y value display on graph), add the next line into the script (<a class="el" href="script_8py.html">graphs/script.py</a>) after line 31: </p>
+<pre class="fragment">    axes.set_ylim([0,N])
 </pre><h3>GENERATE GRAPH WITH GNUPLOT:</h3>
 <p>Reproduce the histogram according to figure 8 from Brunel's document. The plot displays the total number of spikes at each dt. You can adapt the x and y axes range according to which graph (A,B,C,D) you display.</p>
 <p>Run the program. To generate the graph, type the next command line, from the build directory: </p>
@@ -140,11 +142,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3>NOTE ON GITHUB:</h3>
 <p>You'll find on github 2 repositories:</p>
 <p>In cppcourse-brunel: You'll find the final version of the program.</p>
-<p>In CS116-2017-Margaux-Roulet: You'll find two versions of network.xx neuron.xx <a class="el" href="test__oneNeuron_8cpp.html">test_oneNeuron.cpp</a> <a class="el" href="test__twoNeurons_8cpp.html">test_twoNeurons.cpp</a>. This is due to a change in my hierarchy during the project. The files within the folder src are the final one. But as I wanted to keep the old files to still have an history of my commits, I kept the older version. </p>
+<p>In CS116-2017-Margaux-Roulet: You'll find two versions of network.xx neuron.xx test_oneNeuron.cpp test_twoNeurons.cpp. This is due to a change in my hierarchy during the project. The files within the folder src are the final one. But as I wanted to keep the old files to still have an history of my commits, I kept the older version. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 5 2017 14:07:42 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 10 2017 17:31:25 for Neuron Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -8,13 +8,11 @@ Neuron::Neuron(double stopTime, double iext, double potential)
 : stopTime_(stopTime), iext_(iext), potential_(potential)
 {
 	//on initialise pour le moment le start time à 0 par défaut (à voir pour la suite)
-//	startTime_ = 0.0;
-//	isRefractory_ = false;
 	hasSpike_ = false;
 	isInhibiter_ = false;
 	refractoryTime_ = 0;
-//	spikesReceived_ = 0;
 	nbSpikes_ = 0;
+	time_ = 0;
 
 	//la taille du buffer initial est 15 (soit 16 cases).
 	//de ce fait, il y aura un délai de 15 cases pour qu'un spike s'y inscrive, soit 1.5 ms
@@ -82,7 +80,6 @@ void Neuron::fillBuffer(double spike, size_t writeBox)
 void Neuron::update(size_t readBox)
 {	
 	hasSpike_ = false;
-	
 	// if the refractory time is greater than the refractory period	
 	if (refractoryTime_ > 0) { 
 		// We reset the potential to 0.0 because the neuron is in a refractory state and cannot receive  any spikes.
@@ -97,11 +94,10 @@ void Neuron::update(size_t readBox)
 		//The neuron spikes
 		hasSpike_ = true;
 		++nbSpikes_;
-		
-//		potential_ = PotentialReset;
+//		cout << "spikeTime: " << nbSpikes_ << ": " << time_*0.1 << endl;
 		
 		// = tauRp/dt,the refractory time is expressed in steptime
-		refractoryTime_ = RefractoryStep; 
+		refractoryTime_ = RefractoryStep -1; 
 	
 	//if the potential is smaller thant  the Threshold
 	} else {
@@ -109,5 +105,6 @@ void Neuron::update(size_t readBox)
 		//we calculate the new accurate value of the potential 
 		potential_ = membraneEq(readBox);
 	}
+	++time_;
 }
 //======================================================================

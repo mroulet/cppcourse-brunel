@@ -44,6 +44,7 @@ Network::~Network()
 	//File closing
 	spikesFile_->close();
 	spikesIndexFile_->close();
+	
 }
 //======================================================================
 //getter/setter
@@ -56,10 +57,6 @@ unsigned int Network::getNbNeurons() const
 {
 	return neurons_.size();
 }
-/*vector<vector< unsigned int> > Network::getIndex() const
-{
-	return index_;
-}*/
 //----------------------------------------------------------------------
 // Initialisation of the connected neurons list for each neuron of the network
 // We create Ce = Ne*0.1 excitatory connections and Ci=Ni*0.1 inhibitory connections
@@ -82,21 +79,6 @@ unsigned int Network::getNbExternalConnections()
 {
 	return getNbExcitatoryConnections();
 }
-//----------------------------------------------------------------------
-/*double Network::getFrequencyThr() //obsolète
-{
-	return Threshold / (getNbExcitatoryConnections() * Amplitude * tau);
-}
-//----------------------------------------------------------------------
-double Network::getExternalFrequency() // obsolète
-{	// cest/vtzhr * ce * vthr -> la multiplication des ce se fait dans poisson
-	return getNbExcitatoryConnections()*Eta*getFrequencyThr();
-}
-//----------------------------------------------------------------------
-void Network::setNetworkStopTime(double t)
-{
-	networkStopTime_ = t;
-}*/
 //----------------------------------------------------------------------
 void Network::updateBufferIndex()
 {				
@@ -129,7 +111,7 @@ void Network::defineTypeNeuron()
 	}
 }
 //======================================================================
-//méthode connect
+//method connect
 void Network::connect()
 {	
 	//First method connect for test_twoneurons and google test

@@ -1,6 +1,6 @@
 # Neuron project
 
-Margaux Roulet
+Margaux Roulet, margaux.roulet@epfl.ch
  
 sciper: 274274 
 
@@ -40,7 +40,7 @@ From the build directory, you can run the unit tests with the command line:
 	Run the program from the build directory.
 	Choose the number of neurons of your network.
 	Choose the duration of simulation.
-	For graph C with 12500 neurons and 1200 ms, the programm will run in 24 secondes.
+	For graph C, with 12500 neurons and 1200 ms, the program will run in 24 secondes.
 	(To generate the graphs, See section Generate graph with matplotlib or gnuplot.)
 	
 
@@ -59,11 +59,11 @@ Test 4: Test the simulation of one neuron during 400 ms
 
 #### Test with two neurons:
 
-Test 1: Test the spikes Time arrival of one neuron 
+Test 1: Test the spikes transmission Time arrival of two neuron. 
 
 Test 2: Test the transmission of spikes from an inhibitory source neuron to a neuron.
 
-Test 3: Test the tranmission of spikes from a excitatory source neuron to a neuron.
+Test 3: Test the tranmission of spikes from an excitatory source neuron to a neuron.
 
 
 #### Test on the network:
@@ -80,21 +80,24 @@ From the build directory, type the next command line:
 
 ### GENERATE GRAPH WITH MATPLOTLIB:
 We reproduce figure 8 from Brunel's document. 
-Note that the python script has been implemented according to the slides. figure page 6 of week 7.
 
-Hence, axe x = Time [ms] // axe y = Rate [Hz]
+Hence, axe x = Time [ms] // axe y = Number of spikes
 
 The first subplot displays the spike's time according to the neuron index.
-The second subplot displays the rate of spikes.
+The second subplot displays the number of spikes at each dt (dt = 0.1 ms).
 
 To produce correct result, you should run the program with the next features:
 	
 		Number of neurons: 12500
-		Duration of simulation: 300
+		Duration of simulation: 1200
 
 Run the program. To generate the graph, type the next command line, from the build directory:
 		
 		python "../graphs/script.py"
+
+To adapt the y axe's range to N (= max y value display on graph), add the next line into the script (graphs/script.py) after line 31:
+
+		axes.set_ylim([0,N])
 
 ### GENERATE GRAPH WITH GNUPLOT:
 Reproduce the histogram according to figure 8 from Brunel's document.

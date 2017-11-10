@@ -16,20 +16,19 @@ pl.xlabel("Time [ms]")
 pl.ylabel("Index of the neurons")
 
 axes = pl.gca()
-axes.set_xlim([100,300])
+axes.set_xlim([800,1000])
 axes.set_ylim([0,50])
 
 
 pl.subplot(212)
-n, bins, patches = pl.hist(0.1*data1[0], 50, normed=0, alpha=0.75)
+data2 = data.transpose()
+n, bins, patches = pl.hist(0.1*data2[0], 12000, normed=0, alpha=0.75)
 
 pl.xlabel("Time [ms]")
-pl.ylabel("Rate [Hz]")
+pl.ylabel("Number of spikes")
 
 axes = pl.gca()
-axes.set_xlim([100,300])
-axes.set_ylim([0,70])
-axes.set_aspect(0.5)
+axes.set_xlim([800,1000])
 
 
 pl.show();

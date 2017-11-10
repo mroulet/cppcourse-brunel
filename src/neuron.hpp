@@ -181,6 +181,8 @@ private:
 	bool hasSpike_; //!< Neuron spike state
 	
 	bool isInhibiter_; //!< Neuron type: return true if is inhibiter return false if is excitatory
+	
+	unsigned int time_; //!< clock_ of the neuron simulation. Only needed for the cout in the gtest
 };
 
 
